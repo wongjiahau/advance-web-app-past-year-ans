@@ -84,3 +84,22 @@ public function store(Request $r) {
   ], 201);
 }
 ```
+
+## Q2(a)(iii)
+```php
+public function getall() {
+  return Customer::all();
+}
+```
+
+## Q2(a)(iv)
+```php
+public function getone($id) {
+  $c = Customer::find($id);
+  if($c) {
+    return $c;
+  } else {
+    return response()->json(['error' => 'Not found'], 404);
+  }
+}
+```
