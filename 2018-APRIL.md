@@ -56,3 +56,31 @@ foreach($transactions as $t) {
   echo $t->member->account_no;
 }
 ```
+
+## Q2(a)(i)
+```php
+public function create() {
+  return view('customer.create');
+}
+```
+
+## Q2(a)(ii)
+```php
+public function store(Request $r) {
+  $r->validate([
+    'customer_no'=> 'required|string|unique:customers,customer_no|max:10',
+    'name'       => 'required|string|max:200',
+    'email'      => 'required|email|max:200',
+    'phone'      => 'required|digits:20',
+    'address'    => 'required|string|max:500',
+    'postcode'   => 'required|digits:5',
+    'city'       => 'required|string|max:100',
+    'state'      => 'required|string|min:2|max:2'
+  ]);
+  $c = Customer::create($r->all());
+  return response()->json([
+    'id' => $c->id,
+    'created_at' => $c->created_at
+  ], 201);
+}
+```
