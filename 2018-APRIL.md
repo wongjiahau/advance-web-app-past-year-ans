@@ -213,3 +213,70 @@ class CustomerTable extends Component {
   }
 }
 ```
+
+## Q4(b)
+```js
+class WeatherView extends Component {
+  constructor() {
+    this.state = {
+      city:  '',
+      day:   null,
+      night: null,
+      error: null
+    };
+  }
+  
+  componentDidMount() {
+    fetch("/weather/get-data?location=07GT", {
+      methoed: "GET",
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(r => {
+      if(r.status === 200) {
+        return r.json();
+      } else {
+        throw new Error(r.status + r.statusText);
+      }
+    })
+    .then(data => {
+      this.setState(data);
+    })
+    .catch(error => {
+      this.setState({error: error.message});
+    });
+  }
+  
+  render() {
+    return (
+      <div>
+        <p id="error-message">{this.state.error}</p>
+        <span style={textAlign:'center'}><i>Weather for {this.state.city} </i></span><br>
+        <table>
+          <tbody>
+            <tr>
+              <td>day</td>
+              <td>
+                <ul>
+                  <li>{this.state.day.status}</li>
+                  <li>{this.state.day.temperature + String.fromCharCode(176)}</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>night</td>
+              <td>
+                <ul>
+                  <li>{this.state.night.status}</li>
+                  <li>{this.state.night.temperature + String.fromCharCode(176)}</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
+```
