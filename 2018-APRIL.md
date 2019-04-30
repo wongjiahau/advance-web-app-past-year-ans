@@ -299,3 +299,54 @@ class MyView extends Component {
   }
 }
 ```
+
+## Q5(B)
+The answer for this question is incomplete.
+```js
+class MyForm extends Component {
+  constructor() {
+    this.state = {
+      username: '',
+      email_domain: '',
+      password: '',
+      password_confirm: '',
+      firstname: '',
+      lastname: '',
+      country: ''
+    };
+  }
+  
+  handleChange = (fieldName) => (event) => {
+    this.setState({[fieldName]: event.target.value});
+  }
+
+  handleCheckAvail = () => {
+    fetch("/user/checkavail?emaildomain=" + this.state.email_domain , {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(r => {
+      if(r.status === 200) return r.json();
+      else throw new Error(r.status + r.statusText);
+    })
+    .then(data => ?????????????????
+  }
+  
+  render() {
+     return (
+        <form onSubmit={(e) => e.preventDefault()}>
+          <label>Username:         <input type="text"     onChange={this.handleChange("username")}>        </label>
+          <label>Email domain:     <input type="text"     onChange={this.handleChange("email_domain")}>    </label>
+          <label>Password:         <input type="password" onChange={this.handleChange("password")}>        </label>
+          <label>Confirm password: <input type="password" onChange={this.handleChange("password_confirm")}></label>
+          <label>First name:       <input type="text"     onChange={this.handleChange("firstname")}>       </label>
+          <label>Last name:        <input type="text"     onChange={this.handleChange("lastname")}>        </label>
+          <label>Country:          <input type="text"     onChange={this.handleChange("country")}>         </label>
+          <button onClick={this.handleCheckAvail}>Check availability</button>
+        </form>
+     );
+  }
+}
+```
