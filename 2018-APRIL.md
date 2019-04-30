@@ -103,3 +103,11 @@ public function getone($id) {
   }
 }
 ```
+
+## Q2(b)
+```php
+Route::get ('/customers/index' , 'CustomerController@create');
+Route::post('/customers'       , 'CustomerController@store' );
+Route::get ('/customers'       , 'CustomerController@getall');
+Route::get ('/customers/{id}'  , 'CustomerController@getone');
+```
