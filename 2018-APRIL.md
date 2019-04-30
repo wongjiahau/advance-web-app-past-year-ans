@@ -177,7 +177,7 @@ class AlbumController extends Controller {
 ```js
 class CustomerTable extends Component {
   constructor() {
-    this.state = rawData; // assume rawData is defined
+    this.state = JSON.parse(rawData); // assume rawData is defined
   }
   
   render() {
