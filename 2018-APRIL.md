@@ -111,3 +111,44 @@ Route::post('/customers'       , 'CustomerController@store' );
 Route::get ('/customers'       , 'CustomerController@getall');
 Route::get ('/customers/{id}'  , 'CustomerController@getone');
 ```
+
+## Q2(c)
+Skipped.
+
+## Q3(a)
+```php
+public function isAdmin() {
+  return $this->access_level === 2;
+}
+
+public function isSuperAdmin() {
+  return $this->access_level === 1;
+}
+```
+
+## Q3(b)
+```php
+class AlbumPolicy {
+  public function before($user, $ability) {
+    if($user->isAdmin() || $user->isSuperAdmin()) {
+      return true;
+    }
+  }
+  
+  public function create(User $u) {
+    // should be empty
+  }
+  
+  public function edit(User $u, Album $a) {
+    return $u->id === $a->user_id;
+  }
+  
+  public function delete(User $u, Album $a) {
+    return $u->id === $a->user_id;
+  }
+  
+  public function upload(User $u, Album $a) {
+    return $u->id === $a->user_id;
+  }
+}
+```
