@@ -228,7 +228,7 @@ class WeatherView extends Component {
   
   componentDidMount() {
     fetch("/weather/get-data?location=07GT", {
-      methoed: "GET",
+      method: "GET",
       headers: {
         'Accept': 'application/json'
       }
@@ -276,6 +276,25 @@ class WeatherView extends Component {
           </tbody>
         </table>
       </div>
+    );
+  }
+}
+```
+
+## Q5(a)
+```js
+class MyView extends Component {
+  constructor() {
+    this.state = bookData; // assume bookData is predefined
+  }
+  
+  render() {
+    return (
+      <ol type="1">
+        {this.state.map(book =>(
+          <li>{book.authors.join(",")}<i>{book.title}</i></li>
+        ))}
+      </ol>
     );
   }
 }
