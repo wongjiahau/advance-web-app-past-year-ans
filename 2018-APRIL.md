@@ -172,3 +172,44 @@ class AlbumController extends Controller {
   }
 }
 ```
+
+## Q4(a)
+```js
+class CustomerTable extends Component {
+  constructor() {
+    this.state = rawData; // assume rawData is defined
+  }
+  
+  render() {
+    return (
+      <div>
+        <span style={textAlign:'center'}><i>List of Customers of My Cat Shop</i></span><br>
+        <table>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Customer No.</th>
+              <th>Customer Name</th>
+              <th>Zone</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.state.map((c, index) => 
+                (
+                  <tr>
+                    <td>{index}</td>
+                    <td>{c.customer_no}</td>
+                    <td>{c.customer_name}</td>
+                    <td>{c.zone}</td>
+                  </tr>
+                )
+              )
+            }
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
+```
