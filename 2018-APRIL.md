@@ -152,3 +152,23 @@ class AlbumPolicy {
   }
 }
 ```
+
+## Q3(c)(i)
+```php
+if($user->can('create', Album::class)) { 
+  // do something
+}
+```
+
+## Q3(c)(ii)
+```php
+Route::put('album/{id}', 'AlbumController@edit', function(Album $a){})->middleware('can:edit,album');
+```
+## Q3(c)(iii)
+```php
+class AlbumController extends Controller {
+  public function upload(Request $r, Album $a) {
+    $this->authorize('upload', $a);
+  }
+}
+```
